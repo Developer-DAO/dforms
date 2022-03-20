@@ -16,7 +16,6 @@ module.exports = async function (fastify, options, done) {
         return
       }
       request.session.siwe = fields
-      request.session.cookie.expires = new Date(fields.expirationTime)
       reply.send()
       return
     } catch {
