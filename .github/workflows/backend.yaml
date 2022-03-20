@@ -38,6 +38,6 @@ jobs:
     - name: Run ESLint
       run: npx eslint
     - name: Run server
-      run: node index.js && sleep 5 && curl localhost:3000 -I
+      run: node index.js && sleep 5 && curl localhost:8080 -I
       continue-on-error: true
       timeout-minutes: 1

@@ -1,9 +1,15 @@
 import { SiweMessage } from 'siwe';
 
-const API_URL = 'http://127.0.0.1:3000';
+const API_URL = 'http://127.0.0.1:8080';
 
 export const getNonce = () => {
-  return fetch(`${API_URL}/nonce`).then((res) => res.text());
+  return fetch(`${API_URL}/nonce`, {
+    method: 'GET',
+    credentials: 'include'
+  }).then(async (res) => {
+    const body = await res.json();
+    return body.nonce;
+  });
 };
 
 export const createSiweMessage = async (
@@ -36,6 +42,5 @@ export const verifySiweMessage = async (message: string, signature: string) => {
     body: JSON.stringify({ message, signature }),
     credentials: 'include',
   });
-  console.log(await res.text());
   return res;
 };
