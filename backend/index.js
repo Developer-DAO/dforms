@@ -5,6 +5,9 @@ const fastifyCookie = require('fastify-cookie')
 
 fastify.register(fastifyCookie)
 fastify.register(fastifySession, { secret: process.env.SECRET })
+fastify.register(require('fastify-cors'), {
+  origin: true
+})
 fastify.register(require('./routes'))
 
 const start = async () => {
