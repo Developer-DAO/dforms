@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Backend CI
 
 on:
   push:
@@ -10,11 +10,16 @@ on:
     branches: [ main ]
 
 env:
-  SECRET: 123456789012345678901234567890
+  SECRET: '1234567890123456789012345678901234567890'
+  CI: 'true'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
 
     strategy:
       matrix:
@@ -27,9 +32,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: './backend/package-lock.json'
     - name: Install packages
       run: npm ci
     - name: Run ESLint
       run: npx eslint
     - name: Run server
       run: node index.js && sleep 5 && curl localhost:3000 -I
+      continue-on-error: true
+      timeout-minutes: 1
