@@ -1,14 +1,11 @@
+require('dotenv').config()
 const fastify = require('fastify')({ logger: true })
 
-// Declare a route
-fastify.get('/', async (request, reply) => {
-  return { hello: 'world' }
-})
+fastify.register(require('./routes'))
 
-// Run the server!
 const start = async () => {
   try {
-    await fastify.listen(3000)
+    await fastify.listen(process.env.PORT ?? 3000, process.env.HOST ?? '127.0.0.1')
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
