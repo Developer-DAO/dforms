@@ -11,6 +11,7 @@ on:
 
 env:
   SECRET: '1234567890123456789012345678901234567890'
+  CI: 'true'
 
 jobs:
   build:
@@ -38,3 +39,5 @@ jobs:
       run: npx eslint
     - name: Run server
       run: node index.js && sleep 5 && curl localhost:3000 -I
+      continue-on-error: true
+      timeout-minutes: 1
