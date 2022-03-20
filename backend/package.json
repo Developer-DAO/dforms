@@ -1,0 +1,23 @@
+{
+  "name": "dforms-backend",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "QEDK",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "fastify": "^3.27.4",
+    "fastify-swagger": "^5.0.0",
+    "siwe": "^1.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0"
+  }
+}
